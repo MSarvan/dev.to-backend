@@ -2,6 +2,8 @@ const express = require("express");
 
 const connect = require("./config/db");
 
+require("dotenv").config();
+
 const userController = require("./controllers/user.controller");
 const { register, login } = require("./controllers/auth.controller")
 
@@ -18,9 +20,9 @@ app.post("/login", login);
 
 app.use("/users", userController);
 
+const port = process.env.PORT || 7890;
 
-
-app.listen(7890, async () => {
+app.listen(port, async () => {
     try {
         await connect();
     } catch (err) {
